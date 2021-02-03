@@ -31,7 +31,7 @@ class RDFModel:
             raise PropertyNotSetException(f'mapping in {self.__class__.__name__} class is not defined.')
 
         for key, val in local_vars.items():
-            if key != 'self' and key != 'kwargs':
+            if key != 'self' and key != 'kwargs' and key != '__class__':
                 setattr(self, key, val)
 
         # Generate a blank node if self.uri is not set.
@@ -109,7 +109,7 @@ class RDFModel:
                             )
                         else:
                             raise
-                elif isinstance(value, Literal):
+                elif isinstance(value, Literal) or isinstance(value, URIRef):
                     self._add(
                         self.uri,
                         rdf_property,
