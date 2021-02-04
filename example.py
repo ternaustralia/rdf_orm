@@ -29,8 +29,11 @@ class Price(RDFModel):
     value: Literal
 
     def __init__(self, currency: Literal, value: Literal):
-        # Call the base class constructor to assign the arguments passed in through the constructor to the instance.
-        super(Price, self).__init__(locals())
+        # Call the base class method and pass in the local variables of the
+        # current scope and assign it to self.
+        self.assign_constructor_vars(locals())
+        # Call the base class constructor
+        super(Price, self).__init__()
 
 
 class Item(RDFModel):
@@ -46,7 +49,8 @@ class Item(RDFModel):
     price: Price
 
     def __init__(self, uri: URIRef, label: Literal, price: Price):
-        super(Item, self).__init__(locals())
+        self.assign_constructor_vars(locals())
+        super(Item, self).__init__()
 
 
 class OWLClass(RDFModel):
@@ -65,7 +69,8 @@ class OWLClass(RDFModel):
     items: List[Union[Item, URIRef]] = None
 
     def __init__(self, uri: URIRef, label: Literal, items: List[Union[Item, URIRef]] = None):
-        super(OWLClass, self).__init__(locals())
+        self.assign_constructor_vars(locals())
+        super(OWLClass, self).__init__()
 
 
 if __name__ == '__main__':

@@ -24,12 +24,16 @@ class RDFModel:
     rdf: str
     uri: URIRef
 
-    def __init__(self, local_vars: locals):
+    def __init__(self):
         if self.class_uri is None:
             raise PropertyNotSetException(f'class_uri in {self.__class__.__name__} class is not defined.')
         if self.mapping is None:
             raise PropertyNotSetException(f'mapping in {self.__class__.__name__} class is not defined.')
 
+        # This gets set in self._rdf()
+        # self._g = Graph()
+
+    def assign_constructor_vars(self, local_vars: locals):
         for key, val in local_vars.items():
             if key != 'self' and key != 'kwargs' and key != '__class__':
                 setattr(self, key, val)
@@ -37,9 +41,6 @@ class RDFModel:
         # Generate a blank node if self.uri is not set.
         if not hasattr(self, 'uri'):
             self.uri = BNode(str(uuid4()))
-
-        # This gets set in self._rdf()
-        # self._g = Graph()
 
     def __str__(self):
         if hasattr(self, 'label'):

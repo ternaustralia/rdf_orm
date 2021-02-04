@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setuptools.setup(
     name='rdf_orm',
-    version='0.1.1',
+    version='0.2.0',
     author='Edmond Chuc',
     author_email='e.chuc@uq.edu.au',
     description='Express RDF classes as Python classes with full Python annotation support.',
