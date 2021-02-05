@@ -85,11 +85,11 @@ class RDFModel:
             # Check for optional values and skip if they are None.
             if value is not None:
                 if isinstance(value, RDFModel):
-                    self._add((
+                    self._add(
                         self.uri,
                         rdf_property,
                         value.uri
-                    ))
+                    )
                     if type(value.uri) == BNode:
                         self._g += value.g
                 elif isinstance(value, list):
