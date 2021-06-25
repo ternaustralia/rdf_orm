@@ -1,3 +1,4 @@
+from typing import Union
 from uuid import uuid4
 
 from rdflib import URIRef, RDF, Graph
@@ -22,7 +23,7 @@ class RDFModel:
     mapping: dict = None
     g: Graph
     rdf: str
-    uri: URIRef
+    uri: Union[URIRef, BNode]
 
     def __init__(self):
         if self.class_uri is None:
