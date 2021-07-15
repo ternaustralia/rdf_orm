@@ -91,8 +91,9 @@ class RDFModel:
                         rdf_property,
                         value.uri
                     )
-                    if type(value.uri) == BNode:
-                        self._g += value.g
+                    # if type(value.uri) == BNode:
+                    #     self._g += value.g
+                    self._g += value.g
                 elif isinstance(value, list):
                     for item in value:
                         if isinstance(item, RDFModel):
@@ -101,8 +102,9 @@ class RDFModel:
                                 rdf_property,
                                 item.uri
                             )
-                            if type(item.uri) == BNode:
-                                self._g += item.g
+                            # if type(item.uri) == BNode:
+                            #     self._g += item.g
+                            self._g += item.g
                         elif isinstance(item, URIRef):
                             self._add(
                                 self.uri,

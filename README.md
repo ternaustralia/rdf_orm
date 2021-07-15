@@ -147,21 +147,37 @@ if __name__ == '__main__':
     <item-1> a ns1:Item ;
         rdfs:label "item 1" ;
         ns1:hasPrice [ a ns1:Price ;
-                rdf:value 5 ;
-                ns1:hasCurrency "aud" ] ;
+                rdf:value 15 ;
+                ns1:hasCurrency "usd" ] ;
         ns1:isItemOf <individual-1> .
     
     <item-2> a ns1:Item ;
         rdfs:label "item 2" ;
         ns1:hasPrice [ a ns1:Price ;
+                rdf:value 5 ;
+                ns1:hasCurrency "aud" ] ;
+        ns1:isItemOf <individual-1> .
+    
+    <item-3> a ns1:Item ;
+        rdfs:label "item 3" ;
+        ns1:hasPrice [ a ns1:Price ;
                 rdf:value 11 ;
                 ns1:hasCurrency "usd" ] ;
+        ns1:isItemOf <individual-1> .
+    
+    <item-4> a ns1:Item ;
+        rdfs:label "item 4" ;
+        ns1:hasPrice [ a ns1:Price ;
+                rdf:value 3 ;
+                ns1:hasCurrency "aud" ] ;
         ns1:isItemOf <individual-1> .
     
     <individual-1> a <http://www.w3.org/2002/07/owl#Class> ;
         rdfs:label "Individual 1 modified" ;
         ns1:hasItem <item-1>,
-            <item-2> .
+            <item-2>,
+            <item-3>,
+            <item-4> .
     """
 
 ```
