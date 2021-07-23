@@ -74,7 +74,7 @@ class RDFModel:
                 s
             ))
         else:
-            raise TypeError(f'Not supported type {type(p)}')
+            raise TypeError(f'Unexpected type {type(p)} for value {p}')
 
     def _rdf(self, format: str = 'turtle'):
         # Set/reset g
@@ -94,7 +94,7 @@ class RDFModel:
                     # if type(value.uri) == BNode:
                     #     self._g += value.g
                     self._g += value.g
-                elif isinstance(value, list):
+                elif isinstance(value, list) or isinstance(value, tuple):
                     for item in value:
                         if isinstance(item, RDFModel):
                             self._add(
@@ -112,7 +112,7 @@ class RDFModel:
                                 item
                             )
                         else:
-                            raise
+                            raise TypeError(f'Unexpected type {type(item)} for value {item}')
                 elif isinstance(value, Literal) or isinstance(value, URIRef):
                     self._add(
                         self.uri,
@@ -120,7 +120,7 @@ class RDFModel:
                         value
                     )
                 else:
-                    raise TypeError(f'Not supported type {type(value)}')
+                    raise TypeError(f'Unexpected type {type(value)} for value {value}')
         return self._g.serialize(format=format).decode('utf-8')
 
     @property
