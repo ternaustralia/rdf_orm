@@ -121,7 +121,7 @@ class RDFModel:
                     )
                 else:
                     raise TypeError(f'Unexpected type {type(value)} for value {value}')
-        return self._g.serialize(format=format).decode('utf-8')
+        return self._g.serialize(format=format)
 
     @property
     def rdf(self):
